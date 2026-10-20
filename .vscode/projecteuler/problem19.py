@@ -1,26 +1,29 @@
-# January 1, 1901 is a Tuesday (Day 2)
-current_day = 2  
-sunday_count = 0
-
-# Loop through every year from 1901 to 2000
-for year in range(1901, 2001):
+def count_sundays_manually():
+    # Days in each month (January to December)
+    # index 0 is placeholder for alignment (month 1 = Jan)
+    days_in_months = [0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
     
-    # Check if the year is a leap year using math rules
-    if (year % 4 == 0 and year % 100 != 0) or (year % 400 == 0):
-        feb_days = 29
-    else:
-        feb_days = 28
-        
-    # List of month lengths for the current year
-    months = [31, feb_days, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+    # January 1, 1901 was a Tuesday
+    # Monday = 1, Tuesday = 2, ..., Saturday = 6, Sunday = 0
+    current_weekday = 2 
+    sunday_count = 0
     
-    # Loop through each month
-    for days_in_month in months:
-        # If the 1st of the current month is a Sunday (0), increment count
-        if current_day == 0:
-            sunday_count += 1
+    for year in range(1901, 2001):
+        # Update February for Leap Years
+        if year % 4 == 0: # Note: 2000 is divisible by 400, so it's a leap year
+            days_in_months[2] = 29
+        else:
+            days_in_months[2] = 28
             
-        # Mathematically shift the day pointer to the 1st of the NEXT month
-        current_day = (current_day + days_in_month) % 7
+        for month in range(1, 13):
+            # If the 1st of the month is a Sunday, increment count
+            if current_weekday == 0:
+                sunday_count += 1
+            
+            # Shift the weekday forward by the number of days in this month
+            current_weekday = (current_weekday + days_in_months[month]) % 7
+            
+    return sunday_count
 
-print(sunday_count)
+print(f"Total Sundays on the 1st of the month: {count_sundays_manually()}")
+
