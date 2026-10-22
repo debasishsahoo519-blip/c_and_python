@@ -1,1 +1,0 @@
-print("linu =",a,"para =",b)
