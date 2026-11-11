@@ -6,10 +6,11 @@ int main() {
     int sum=0;
     int sum2=0;
     while(sum<4000000){
-        sum=n+m;
+        
         if(sum%2==0){
             sum2+=sum;
         }
+        sum=n+m;
         n=m;
         m=sum;
 

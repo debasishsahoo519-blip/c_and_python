@@ -12,15 +12,6 @@ def is_square(n):
     if a*a==n:
         return True
     return False
-
-
-
-
-
-
-
-
-
 n=9
 check=1
 
